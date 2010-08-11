@@ -1,80 +1,91 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-	<title>praekelt/panya @ GitHub</title>
-	
-	<style type="text/css">
-		body {
-  		margin-top: 1.0em;
-  		background-color: #0c179b;
-		  font-family: "Helvetica,Arial,FreeSans";
-  		color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #f3e864; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #f3e864; }
-    h3 { text-align: center; color: #f3e864; }
-    a { color: #f3e864; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-	</style>
-	
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>Panya Documentation</title>
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Panya v0.0.1 documentation" href="#" />
+    <link rel="next" title="Apps Overview" href="apps_overview.html" /> 
+  </head>
+  <body>
 
-<body>
-  <a href="http://github.com/praekelt/panya"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-panya-s-documentation">
+<h1>Welcome to Panya&#8217;s documentation!<a class="headerlink" href="#welcome-to-panya-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Panya is a set of Django applications that aims to make your life even easier than it already is. It means “blink” in seSotho. Panya makes rich portal development a breeze.</p>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apps_overview.html">Apps Overview</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<p>Panya provides a Paste template which you can use to create a self contained Django instance with relevant project and Panya app settings preconfigured.</p>
+<p>In order to use the Paste template you need to install Paste and the Panya specifc templates:</p>
+<div class="highlight-python"><pre>$ sudo easy_install paste
+$ sudo easy_install panya-paste</pre>
+</div>
+<p>Once the Paste templates have been installed, create your project by running:</p>
+<div class="highlight-python"><pre>$ paster create -t panya_project</pre>
+</div>
+<p>Provide a project name and follow the prompts.</p>
+<p>The Paste process will create a Buildout environment for you. <em>Buildout provides tools for assembling applications from multiple parts, Python or otherwise</em>. In Panya&#8217;s case Buildout is used to create a self contained Django environment with all the relevant Panya apps installed and configured, as well as initialising a Django project.</p>
+<p>To initialise the Buildout environment:</p>
+<div class="highlight-python"><pre>$ cd &lt;project_name&gt;
+$ python bootstrap.py
+$ ./bin/buildout</pre>
+</div>
+<p>After the Buildout process completes you can start your Django instance by running:</p>
+<div class="highlight-python"><pre>$ ./bin/&lt;project_name&gt; runserver</pre>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">bin/&lt;project_name&gt;</span></tt> script acts as Django&#8217;s normal <tt class="docutils literal"><span class="pre">manage.py</span></tt> script.</p>
+</div>
+<div class="section" id="bug-tracker">
+<h2>Bug tracker<a class="headerlink" href="#bug-tracker" title="Permalink to this headline">¶</a></h2>
+<p>If you spot any bugs or have feature suggestions, please report them to our issue tracker at <a class="reference external" href="https://praekelt.lighthouseapp.com/projects/55837-panya/overview">https://praekelt.lighthouseapp.com/projects/55837-panya/overview</a>. Alternatively use the GitHub issue tracker for each respective app.</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>Panya and its constituent apps are licensed under the BSD License. See the LICENSE file in the top distribution directory of each package for the full license text.</p>
+</div>
+</div>
 
-  <div id="container">
 
-    <div class="download">
-      <a href="http://github.com/praekelt/panya/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/praekelt/panya/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
     </div>
-
-    <h1><a href="http://github.com/praekelt/panya">Panya</a>
-      <span class="small">by <a href="http://github.com/praekelt">praekelt</a></span></h1>
-
-    <div class="description">
-      
-    </div>
-
-    <h2>Authors</h2>
-<p>Shaun Sephton (shaun@praekelt.com)<br/>Jonathan Bydendyk (jonathan@praekelt.com)<br/>Euan Jonker (euan@praekelt.com)<br/></p>
-<h2>Contact</h2>
-<p>Praekelt Consulting (dev@praekelt.com)<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/praekelt/panya/zipball/master">zip</a> or
-      <a href="http://github.com/praekelt/panya/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/praekelt/panya</pre>
-    </p>
+  <a href="http://github.com/praekelt/panya"><img style="position: fixed; top: 0; right: 0; border: 0;"
+  src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
     <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/praekelt/panya">praekelt/panya</a>
+        &copy; Copyright 2010, Praekelt.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0b2.
     </div>
-
-  </div>
-
-  
-</body>
+  </body>
 </html>
