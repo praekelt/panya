@@ -1,0 +1,69 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>Panya Documentation</title>
+    <link rel="stylesheet" href="static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="Panya v0.0.1 documentation" href="index.html" />
+    <link rel="next" title="Models" href="models.html" />
+    <link rel="prev" title="Apps Overview" href="apps_overview.html" /> 
+  </head>
+  <body>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>Managers<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>This document describes custom managers provided by the standard set of Panya apps.</p>
+<div class="section" id="panya-managers">
+<h2>Panya Managers<a class="headerlink" href="#panya-managers" title="Permalink to this headline">¶</a></h2>
+<p>The following managers are contained in <tt class="docutils literal"><span class="pre">panya.managers</span></tt>.</p>
+<div class="section" id="permitted">
+<h3>Permitted<a class="headerlink" href="#permitted" title="Permalink to this headline">¶</a></h3>
+<p>The permitted manager is used to limit queryset results based on object state and site eligibility, see <a class="reference internal" href="models.html#models-modelbase"><em>ModelBase&#8217;s</em></a> <a class="reference internal" href="models.html#models-modelbase-fields-state"><em>state</em></a> and <a class="reference internal" href="models.html#models-modelbase-fields-sites"><em>sites</em></a> fields. The managers resulting queryset is determined by the following rules:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Exclude all objects which have a state of <tt class="docutils literal"><span class="pre">unpublished</span></tt>.</li>
+<li>Only include those objects which have a state of <tt class="docutils literal"><span class="pre">published</span></tt> and a site set corresponding to the <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/settings#site-id">SITE_ID Django setting</a>.</li>
+<li>If the setting <a class="reference internal" href="settings.html#settings-staging"><em>STAGING</em></a> is <tt class="xref docutils literal"><span class="pre">True</span></tt>, also include those objects which have a state of <tt class="docutils literal"><span class="pre">staging</span></tt>.</li>
+</ol>
+</blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <a href="http://github.com/praekelt/panya"><img style="position: fixed; top: 0; right: 0; border: 0;"
+  src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+
+    <div class="footer">
+        &copy; Copyright 2010, Praekelt.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.1.
+    </div>
+  </body>
+</html>

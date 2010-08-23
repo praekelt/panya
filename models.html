@@ -1,0 +1,81 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>Panya Documentation</title>
+    <link rel="stylesheet" href="static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="Panya v0.0.1 documentation" href="index.html" />
+    <link rel="next" title="Settings" href="settings.html" />
+    <link rel="prev" title="Managers" href="managers.html" /> 
+  </head>
+  <body>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="models">
+<h1>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h1>
+<p>Panya is made up of a collection of standalone Django applications, each providing various models. This document describes models included in the standard set of Panya apps.</p>
+<div class="section" id="panya-models">
+<h2>Panya Models<a class="headerlink" href="#panya-models" title="Permalink to this headline">¶</a></h2>
+<p>The following models are contained in <tt class="docutils literal"><span class="pre">panya.models</span></tt>.</p>
+<div class="section" id="modelbase">
+<h3>ModelBase<a class="headerlink" href="#modelbase" title="Permalink to this headline">¶</a></h3>
+<p>ModelBase provides default CMS behaviour for inherting models. All content types should inherit from ModelBase.</p>
+<div class="section" id="fields">
+<h4>fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="state">
+<h4>state<a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h4>
+<p><em>models.CharField</em></p>
+<p>Stores the current state of the content object, with state being one of the following choices:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="s">&#39;unpublished&#39;</span><span class="p">,</span> <span class="s">&#39;Unpublished&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="s">&#39;published&#39;</span><span class="p">,</span> <span class="s">&#39;Published&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="s">&#39;staging&#39;</span><span class="p">,</span> <span class="s">&#39;Staging&#39;</span><span class="p">),</span>
+</pre></div>
+</div>
+<p>A content object&#8217;s state is used by the <a class="reference internal" href="managers.html#managers-panya-permitted"><em>permitted manager</em></a> to limit content access. The permitted manager&#8217;s queryset will never include an object with a state of <tt class="docutils literal"><span class="pre">unpublished</span></tt>.</p>
+</div>
+<div class="section" id="sites">
+<h4>sites<a class="headerlink" href="#sites" title="Permalink to this headline">¶</a></h4>
+<p><em>models.ManyToManyField</em></p>
+<p>Makes item eligible to be published on selected sites, see <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/contrib/sites/">Django&#8217;s sites framework</a>. This is field used by the <a class="reference internal" href="managers.html#managers-panya-permitted"><em>permitted manager</em></a> to limit content access. The permitted manager&#8217;s queryset will only include objects which have a site set corresponding to the <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/settings#site-id">SITE_ID Django setting</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <a href="http://github.com/praekelt/panya"><img style="position: fixed; top: 0; right: 0; border: 0;"
+  src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+
+    <div class="footer">
+        &copy; Copyright 2010, Praekelt.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.1.
+    </div>
+  </body>
+</html>

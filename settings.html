@@ -21,13 +21,8 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <script type="text/javascript" src="static/searchtools.js"></script>
     <link rel="top" title="Panya v0.0.1 documentation" href="index.html" />
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-   
-
+    <link rel="prev" title="Models" href="models.html" /> 
   </head>
   <body>
 
@@ -36,29 +31,17 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <h1 id="search-documentation">Search</h1>
-  <div id="fallback" class="admonition warning">
-  <script type="text/javascript">$('#fallback').hide();</script>
-  <p>
-    Please activate JavaScript to enable the search
-    functionality.
-  </p>
-  </div>
-  <p>
-    From here you can search these documents. Enter your search
-    words into the box below and click "search". Note that the search
-    function will automatically search for all of the words. Pages
-    containing fewer words won't appear in the result list.
-  </p>
-  <form action="" method="get">
-    <input type="text" name="q" value="" />
-    <input type="submit" value="search" />
-    <span id="search-progress" style="padding-left: 10px"></span>
-  </form>
-  
-  <div id="search-results">
-  
-  </div>
+  <div class="section" id="id1">
+<h1>Settings<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>Here’s a full list of all available settings as required by the standard set of Panya apps, in alphabetical order, and their default values.</p>
+<div class="section" id="staging">
+<h2>STAGING<a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
+<p>Default: <tt class="xref docutils literal"><span class="pre">False</span></tt></p>
+<p>A boolean that turns on/off staging mode.</p>
+<p>If this setting is set to <tt class="xref docutils literal"><span class="pre">True</span></tt> the <a class="reference internal" href="managers.html#managers-panya-permitted"><em>permitted manager&#8217;s</em></a> resulting queryset will additionaly include objects which have a <a class="reference internal" href="models.html#models-modelbase-fields-state"><em>state</em></a> set to <tt class="docutils literal"><span class="pre">staging</span></tt>. Use this setting to create staging instances with which you can preview content without the content being available to the general public.</p>
+</div>
+</div>
+
 
           </div>
         </div>
