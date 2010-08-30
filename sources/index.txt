@@ -45,7 +45,7 @@ The ``bin/<project_name>`` script acts as Django's normal ``manage.py`` script.
 Support
 -------
 
-Chat now with fellow Panya users in the `#panya IRC channel on irc.freenode.net <irc://irc.freenode.net/panya>`_.
+Ask questions on our :ref:`forum/mailing list <forum>`, or chat now with fellow Panya users in the `#panya IRC channel on irc.freenode.net <irc://irc.freenode.net/panya>`_.
 
 Bug Tracker
 -----------
