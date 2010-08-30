@@ -33,19 +33,213 @@
           <div class="body">
             
   <div class="section" id="models">
-<h1>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id10">Models</a><a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h1>
 <p>Panya is made up of a collection of standalone Django applications, each providing various models. This document describes models included in the standard set of Panya apps.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference external" href="#models" id="id10">Models</a><ul>
+<li><a class="reference external" href="#category-models" id="id11">Category Models</a><ul>
+<li><a class="reference external" href="#category" id="id12">Category</a><ul>
+<li><a class="reference external" href="#fields" id="id13">fields</a><ul>
+<li><a class="reference external" href="#title" id="id14">title</a></li>
+<li><a class="reference external" href="#slug" id="id15">slug</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference external" href="#tag" id="id16">Tag</a><ul>
+<li><a class="reference external" href="#models-category-tag-fields" id="id17">fields</a><ul>
+<li><a class="reference external" href="#models-category-tag-field-title" id="id18">title</a></li>
+<li><a class="reference external" href="#models-category-tag-field-slug" id="id19">slug</a></li>
+<li><a class="reference external" href="#categories" id="id20">categories</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference external" href="#panya-models" id="id21">Panya Models</a><ul>
+<li><a class="reference external" href="#modelbase" id="id22">ModelBase</a><ul>
+<li><a class="reference external" href="#models-panya-modelbase-fields" id="id23">fields</a><ul>
+<li><a class="reference external" href="#anonymous-comments" id="id24">anonymous_comments</a></li>
+<li><a class="reference external" href="#anonymous-likes" id="id25">anonymous_likes</a></li>
+<li><a class="reference external" href="#models-panya-modelbase-fields-categories" id="id26">categories</a></li>
+<li><a class="reference external" href="#class-name" id="id27">class_name</a></li>
+<li><a class="reference external" href="#content-type" id="id28">content_type</a></li>
+<li><a class="reference external" href="#comments-closed" id="id29">comments_closed</a></li>
+<li><a class="reference external" href="#comments-enabled" id="id30">comments_enabled</a></li>
+<li><a class="reference external" href="#created" id="id31">created</a></li>
+<li><a class="reference external" href="#description" id="id32">description</a></li>
+<li><a class="reference external" href="#likes-closed" id="id33">likes_closed</a></li>
+<li><a class="reference external" href="#likes-enabled" id="id34">likes_enabled</a></li>
+<li><a class="reference external" href="#modified" id="id35">modified</a></li>
+<li><a class="reference external" href="#owner" id="id36">owner</a></li>
+<li><a class="reference external" href="#publish-on" id="id37">publish_on</a></li>
+<li><a class="reference external" href="#retract-on" id="id38">retract_on</a></li>
+<li><a class="reference external" href="#sites" id="id39">sites</a></li>
+<li><a class="reference external" href="#models-panya-modelbase-fields-slug" id="id40">slug</a></li>
+<li><a class="reference external" href="#state" id="id41">state</a></li>
+<li><a class="reference external" href="#tags" id="id42">tags</a></li>
+<li><a class="reference external" href="#models-panya-modelbase-fields-title" id="id43">title</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#methods" id="id44">methods</a><ul>
+<li><a class="reference external" href="#as-leaf-class" id="id45">as_leaf_class</a></li>
+<li><a class="reference external" href="#can-comment" id="id46">can_comment</a></li>
+<li><a class="reference external" href="#can-vote" id="id47">can_vote</a></li>
+<li><a class="reference external" href="#comment-count" id="id48">comment_count</a></li>
+<li><a class="reference external" href="#is-permitted" id="id49">is_permitted</a></li>
+<li><a class="reference external" href="#modelbase-obj" id="id50">modelbase_obj</a></li>
+<li><a class="reference external" href="#vote-total" id="id51">vote_total</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="category-models">
+<span id="models-category"></span><h2><a class="toc-backref" href="#id11">Category Models</a><a class="headerlink" href="#category-models" title="Permalink to this headline">¶</a></h2>
+<p>The following models are contained in <tt class="docutils literal"><span class="pre">category.models</span></tt>.</p>
+<div class="section" id="category">
+<span id="models-category-category"></span><h3><a class="toc-backref" href="#id12">Category</a><a class="headerlink" href="#category" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="fields">
+<span id="models-category-category-fields"></span><h4><a class="toc-backref" href="#id13">fields</a><a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="title">
+<span id="models-category-category-field-title"></span><h5><a class="toc-backref" href="#id14">title</a><a class="headerlink" href="#title" title="Permalink to this headline">¶</a></h5>
+<p><em>models.CharField</em></p>
+<p>Short descriptive title for the category.</p>
+</div>
+<div class="section" id="slug">
+<span id="models-category-category-field-slug"></span><h5><a class="toc-backref" href="#id15">slug</a><a class="headerlink" href="#slug" title="Permalink to this headline">¶</a></h5>
+<p><em>models.SlugField</em></p>
+<p>Short descriptive unique slug for this category for use in URLs.</p>
+</div>
+</div>
+</div>
+<div class="section" id="tag">
+<span id="models-category-tag"></span><h3><a class="toc-backref" href="#id16">Tag</a><a class="headerlink" href="#tag" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="models-category-tag-fields">
+<span id="id1"></span><h4><a class="toc-backref" href="#id17">fields</a><a class="headerlink" href="#models-category-tag-fields" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="models-category-tag-field-title">
+<span id="id2"></span><h5><a class="toc-backref" href="#id18">title</a><a class="headerlink" href="#models-category-tag-field-title" title="Permalink to this headline">¶</a></h5>
+<p><em>models.CharField</em></p>
+<p>Short descriptive title for the tag.</p>
+</div>
+<div class="section" id="models-category-tag-field-slug">
+<span id="id3"></span><h5><a class="toc-backref" href="#id19">slug</a><a class="headerlink" href="#models-category-tag-field-slug" title="Permalink to this headline">¶</a></h5>
+<p><em>models.SlugField</em></p>
+<p>Short descriptive unique slug for this tag for use in URLs.</p>
+</div>
+<div class="section" id="categories">
+<span id="models-category-tag-field-categories"></span><h5><a class="toc-backref" href="#id20">categories</a><a class="headerlink" href="#categories" title="Permalink to this headline">¶</a></h5>
+<p><em>models.ManyToManyField</em></p>
+<p><a class="reference internal" href="#models-category-category"><em>Categories</em></a> to which this tag belongs. Tags can belong to multiple categories. Tags are used as a means to sub-categorize objects within categories.</p>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="panya-models">
-<h2>Panya Models<a class="headerlink" href="#panya-models" title="Permalink to this headline">¶</a></h2>
+<span id="models-panya"></span><h2><a class="toc-backref" href="#id21">Panya Models</a><a class="headerlink" href="#panya-models" title="Permalink to this headline">¶</a></h2>
 <p>The following models are contained in <tt class="docutils literal"><span class="pre">panya.models</span></tt>.</p>
 <div class="section" id="modelbase">
-<h3>ModelBase<a class="headerlink" href="#modelbase" title="Permalink to this headline">¶</a></h3>
+<span id="models-panya-modelbase"></span><h3><a class="toc-backref" href="#id22">ModelBase</a><a class="headerlink" href="#modelbase" title="Permalink to this headline">¶</a></h3>
 <p>ModelBase provides default CMS behaviour for inherting models. All content types should inherit from ModelBase.</p>
-<div class="section" id="fields">
-<h4>fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="models-panya-modelbase-fields">
+<span id="id4"></span><h4><a class="toc-backref" href="#id23">fields</a><a class="headerlink" href="#models-panya-modelbase-fields" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="anonymous-comments">
+<span id="models-panya-modelbase-fields-anonymous-comments"></span><h5><a class="toc-backref" href="#id24">anonymous_comments</a><a class="headerlink" href="#anonymous-comments" title="Permalink to this headline">¶</a></h5>
+<p><em>models.BooleanField</em></p>
+<p>Enable anonymous commenting for this object. Used by ModelBase&#8217;s <a class="reference internal" href="#models-panya-modelbase-methods-can-comment"><em>can_comment</em></a> method to determine whether or not anonymous users can comment on the given object.</p>
+</div>
+<div class="section" id="anonymous-likes">
+<span id="models-panya-modelbase-fields-anonymous-likes"></span><h5><a class="toc-backref" href="#id25">anonymous_likes</a><a class="headerlink" href="#anonymous-likes" title="Permalink to this headline">¶</a></h5>
+<p><em>models.BooleanField</em></p>
+<p>Enable anonymous liking for this item. Used by ModelBase&#8217;s <a class="reference internal" href="#models-panya-modelbase-methods-can-vote"><em>can_vote</em></a> method to determine whether or not anonymous users can like the given object.</p>
+</div>
+<div class="section" id="models-panya-modelbase-fields-categories">
+<span id="id5"></span><h5><a class="toc-backref" href="#id26">categories</a><a class="headerlink" href="#models-panya-modelbase-fields-categories" title="Permalink to this headline">¶</a></h5>
+<p><em>models.ManyToManyField</em></p>
+<p>Foreign key to <a class="reference internal" href="#models-category"><em>Category</em></a>. Objects can be categorized by more than one category.</p>
+</div>
+<div class="section" id="class-name">
+<span id="models-panya-modelbase-fields-class-name"></span><h5><a class="toc-backref" href="#id27">class_name</a><a class="headerlink" href="#class-name" title="Permalink to this headline">¶</a></h5>
+<p><em>models.CharField</em></p>
+<p>Stores the object&#8217;s class name. The is automatically set when the object is initially saved.
+Used by the <a class="reference internal" href="#models-panya-modelbase-methods-as-leaf-class"><em>as_leaf_class</em></a> method in conjunction with <a class="reference internal" href="#models-panya-modelbase-fields-content-type"><em>content_type</em></a> to traverse to an inheriting child object.</p>
+</div>
+<div class="section" id="content-type">
+<span id="models-panya-modelbase-fields-content-type"></span><h5><a class="toc-backref" href="#id28">content_type</a><a class="headerlink" href="#content-type" title="Permalink to this headline">¶</a></h5>
+<p><em>models.ForeignKey</em></p>
+<p>Foreign key to the content object&#8217;s content type. The is automatically set when the item is initially saved.
+Used by the <a class="reference internal" href="#models-panya-modelbase-methods-as-leaf-class"><em>as_leaf_class</em></a> method in conjunction with <a class="reference internal" href="#models-panya-modelbase-fields-class-name"><em>class_name</em></a> to traverse to an inheriting child object.</p>
+</div>
+<div class="section" id="comments-closed">
+<span id="models-panya-modelbase-fields-comments-closed"></span><h5><a class="toc-backref" href="#id29">comments_closed</a><a class="headerlink" href="#comments-closed" title="Permalink to this headline">¶</a></h5>
+<p><em>models.BooleanField</em></p>
+<p>Close commenting for this item. Used by ModelBase&#8217;s <a class="reference internal" href="#models-panya-modelbase-methods-can-comment"><em>can_comment</em></a> method to determine whether or not users can comment on the given object. Comments will still display, but users won&#8217;t be able to add new comments.</p>
+</div>
+<div class="section" id="comments-enabled">
+<span id="models-panya-modelbase-fields-comments-enabled"></span><h5><a class="toc-backref" href="#id30">comments_enabled</a><a class="headerlink" href="#comments-enabled" title="Permalink to this headline">¶</a></h5>
+<p><em>models.BooleanField</em></p>
+<p>Enable commenting for this object. Used by ModelBase&#8217;s <a class="reference internal" href="#models-panya-modelbase-methods-can-vote"><em>can_vote</em></a> method to determine whether or not users can comment on the given object. If this is <tt class="xref docutils literal"><span class="pre">False</span></tt> you should not display comments for the given object.</p>
+</div>
+<div class="section" id="created">
+<span id="models-panya-modelbase-fields-created"></span><h5><a class="toc-backref" href="#id31">created</a><a class="headerlink" href="#created" title="Permalink to this headline">¶</a></h5>
+<p><em>models.DateTimeField</em></p>
+<p>Date and time on which this item was created. This is automatically set on creation, but can be changed subsequently through admin.</p>
+</div>
+<div class="section" id="description">
+<span id="models-panya-modelbase-fields-description"></span><h5><a class="toc-backref" href="#id32">description</a><a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h5>
+<p><em>models.TextField</em></p>
+<p>A short description. More verbose than the <a class="reference internal" href="#models-panya-modelbase-fields-title"><em>title</em></a> but limited to one or two sentences.</p>
+</div>
+<div class="section" id="likes-closed">
+<span id="models-panya-modelbase-fields-likes-closed"></span><h5><a class="toc-backref" href="#id33">likes_closed</a><a class="headerlink" href="#likes-closed" title="Permalink to this headline">¶</a></h5>
+<p><em>models.BooleanField</em></p>
+<p>Close liking for this item. Used by ModelBase&#8217;s <a class="reference internal" href="#models-panya-modelbase-methods-can-vote"><em>can_vote</em></a> method to determine whether or not users can like the given object. Likes will still display, but users won&#8217;t be able to like the item anymore.</p>
+</div>
+<div class="section" id="likes-enabled">
+<span id="models-panya-modelbase-fields-likes-enabled"></span><h5><a class="toc-backref" href="#id34">likes_enabled</a><a class="headerlink" href="#likes-enabled" title="Permalink to this headline">¶</a></h5>
+<p><em>models.BooleanField</em></p>
+<p>Enable liking for this item. Used by ModelBase&#8217;s <a class="reference internal" href="#models-panya-modelbase-methods-can-vote"><em>can_vote</em></a> method to determine whether or not users can like the given object. If this is <tt class="xref docutils literal"><span class="pre">False</span></tt> you should not to display likes for the given object.</p>
+</div>
+<div class="section" id="modified">
+<span id="models-panya-modelbase-fields-modified"></span><h5><a class="toc-backref" href="#id35">modified</a><a class="headerlink" href="#modified" title="Permalink to this headline">¶</a></h5>
+<p><em>models.DateTimeField</em></p>
+<p>Date and time on which this item was last modified. This is automatically set each time the item is saved.</p>
+</div>
+<div class="section" id="owner">
+<span id="models-panya-modelbase-fields-owner"></span><h5><a class="toc-backref" href="#id36">owner</a><a class="headerlink" href="#owner" title="Permalink to this headline">¶</a></h5>
+<p><em>models.ForeignKey</em></p>
+<p>Foreign key to content object owner&#8217;s user. The owner is automatically set to the logged in user when the item is initially saved.</p>
+</div>
+<div class="section" id="publish-on">
+<span id="models-panya-modelbase-fields-publish-on"></span><h5><a class="toc-backref" href="#id37">publish_on</a><a class="headerlink" href="#publish-on" title="Permalink to this headline">¶</a></h5>
+<p><em>models.DateTimeField</em></p>
+<p>Date and time on which to publish this item (state will change to &#8216;published&#8217;).</p>
+</div>
+<div class="section" id="retract-on">
+<span id="models-panya-modelbase-fields-retract-on"></span><h5><a class="toc-backref" href="#id38">retract_on</a><a class="headerlink" href="#retract-on" title="Permalink to this headline">¶</a></h5>
+<p><em>models.DateTimeField</em></p>
+<p>Date and time on which to retract this item (state will change to &#8216;unpublished&#8217;).</p>
+</div>
+<div class="section" id="sites">
+<span id="models-panya-modelbase-fields-sites"></span><h5><a class="toc-backref" href="#id39">sites</a><a class="headerlink" href="#sites" title="Permalink to this headline">¶</a></h5>
+<p><em>models.ManyToManyField</em></p>
+<p>Makes item eligible to be published on selected sites, see <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/contrib/sites/">Django&#8217;s sites framework</a>. This is field used by the <a class="reference internal" href="managers.html#managers-panya-permitted"><em>permitted manager</em></a> to limit content access. The permitted manager&#8217;s queryset will only include objects which have a site set corresponding to the <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/settings#site-id">SITE_ID Django setting</a>.</p>
+</div>
+<div class="section" id="models-panya-modelbase-fields-slug">
+<span id="id6"></span><h5><a class="toc-backref" href="#id40">slug</a><a class="headerlink" href="#models-panya-modelbase-fields-slug" title="Permalink to this headline">¶</a></h5>
+<p><em>models.SlugField</em></p>
+<p>Unique slug for the content object generated from the <a class="reference internal" href="#models-panya-modelbase-fields-title"><em>title field</em></a> when the item is initially saved. Guaranteed to be unique for all models inheriting from ModelBase.</p>
 </div>
 <div class="section" id="state">
-<h4>state<a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h4>
+<span id="models-panya-modelbase-fields-state"></span><h5><a class="toc-backref" href="#id41">state</a><a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h5>
 <p><em>models.CharField</em></p>
 <p>Stores the current state of the content object, with state being one of the following choices:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="s">&#39;unpublished&#39;</span><span class="p">,</span> <span class="s">&#39;Unpublished&#39;</span><span class="p">),</span>
@@ -53,12 +247,89 @@
 <span class="p">(</span><span class="s">&#39;staging&#39;</span><span class="p">,</span> <span class="s">&#39;Staging&#39;</span><span class="p">),</span>
 </pre></div>
 </div>
-<p>A content object&#8217;s state is used by the <a class="reference internal" href="managers.html#managers-panya-permitted"><em>permitted manager</em></a> to limit content access. The permitted manager&#8217;s queryset will never include an object with a state of <tt class="docutils literal"><span class="pre">unpublished</span></tt>.</p>
+<p>A content object&#8217;s state is used by <a class="reference internal" href="#models-panya-modelbase-methods-is-permitted"><em>ModelBase&#8217;s is_permitted property</em></a> and the <a class="reference internal" href="managers.html#managers-panya-permitted"><em>permitted manager</em></a> to limit content access. The permitted manager&#8217;s queryset will never include an object with a state of <tt class="docutils literal"><span class="pre">unpublished</span></tt>. In the same way ModelBase&#8217;s is_permitted property will always be <tt class="xref docutils literal"><span class="pre">False</span></tt> for objects with a state of <tt class="docutils literal"><span class="pre">unpublished</span></tt>.</p>
 </div>
-<div class="section" id="sites">
-<h4>sites<a class="headerlink" href="#sites" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="tags">
+<span id="models-panya-modelbase-fields-tags"></span><h5><a class="toc-backref" href="#id42">tags</a><a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h5>
 <p><em>models.ManyToManyField</em></p>
-<p>Makes item eligible to be published on selected sites, see <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/contrib/sites/">Django&#8217;s sites framework</a>. This is field used by the <a class="reference internal" href="managers.html#managers-panya-permitted"><em>permitted manager</em></a> to limit content access. The permitted manager&#8217;s queryset will only include objects which have a site set corresponding to the <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/settings#site-id">SITE_ID Django setting</a>.</p>
+<p>Foreign key to <a class="reference internal" href="#models-category-tag"><em>Tag</em></a>. Objects can be tagged by more than one tag.</p>
+</div>
+<div class="section" id="models-panya-modelbase-fields-title">
+<span id="id7"></span><h5><a class="toc-backref" href="#id43">title</a><a class="headerlink" href="#models-panya-modelbase-fields-title" title="Permalink to this headline">¶</a></h5>
+<p><em>models.CharField</em></p>
+<p>A short descriptive title.</p>
+</div>
+</div>
+<div class="section" id="methods">
+<span id="models-panya-modelbase-methods"></span><h4><a class="toc-backref" href="#id44">methods</a><a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="as-leaf-class">
+<span id="models-panya-modelbase-methods-as-leaf-class"></span><h5><a class="toc-backref" href="#id45">as_leaf_class</a><a class="headerlink" href="#as-leaf-class" title="Permalink to this headline">¶</a></h5>
+<p>Returns the leaf class object no matter where the calling instance is in the inheritance hierarchy.</p>
+<p>For instance consider the following inheritance structure:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">panya.models</span> <span class="kn">import</span> <span class="n">ModelBase</span>
+
+<span class="k">class</span> <span class="nc">SomeContentType</span><span class="p">(</span><span class="n">ModelBase</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>When you use a ModelBase manager you&#8217;ll receive objects of class ModelBase. To traverse to an object&#8217;s inheriting child class call the as_leaf_class method, i.e.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">SomeContentType</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;SomeContentType Title&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ModelBase</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">&lt;ModelBase: SomeContentTypeTitle&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ModelBase</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">as_leaf_class</span><span class="p">()</span>
+<span class="go">&lt;SomeContentType: SomeContentTypeTitle&gt;</span>
+</pre></div>
+</div>
+<p>This enables you to query against ModelBase for a wide range of content types whilst still being able to traverse to inheriting models.</p>
+</div>
+<div class="section" id="can-comment">
+<span id="models-panya-modelbase-methods-can-comment"></span><h5><a class="toc-backref" href="#id46">can_comment</a><a class="headerlink" href="#can-comment" title="Permalink to this headline">¶</a></h5>
+<p>Determines whether or not the requesting user can comment on the object, based on ModelBase&#8217;s <a class="reference internal" href="#models-panya-modelbase-fields-anonymous-comments"><em>anonymous_comments</em></a>, <a class="reference internal" href="#models-panya-modelbase-fields-comments-closed"><em>comments_closed</em></a> and <a class="reference internal" href="#models-panya-modelbase-fields-comments-enabled"><em>comments_enabled</em></a> fields.</p>
+</div>
+<div class="section" id="can-vote">
+<span id="models-panya-modelbase-methods-can-vote"></span><h5><a class="toc-backref" href="#id47">can_vote</a><a class="headerlink" href="#can-vote" title="Permalink to this headline">¶</a></h5>
+<p>Determines whether or not the requesting user can vote on the object, based on ModelBase&#8217;s <a class="reference internal" href="#models-panya-modelbase-fields-anonymous-likes"><em>anonymous_likes</em></a>, <a class="reference internal" href="#models-panya-modelbase-fields-likes-closed"><em>likes_closed</em></a> and <a class="reference internal" href="#models-panya-modelbase-fields-likes-enabled"><em>likes_enabled</em></a> fields. Returns a bool as well as a string indicating the current vote status, with vote status being one of: <tt class="docutils literal"><span class="pre">'closed',</span> <span class="pre">'disabled',</span> <span class="pre">'auth_required',</span> <span class="pre">'can_vote',</span> <span class="pre">'voted'</span></tt>.</p>
+</div>
+<div class="section" id="comment-count">
+<span id="models-panya-modelbase-methods-comment-count"></span><h5><a class="toc-backref" href="#id48">comment_count</a><a class="headerlink" href="#comment-count" title="Permalink to this headline">¶</a></h5>
+<p>A property calculating total number of comments made on the objects underlying ModelBase object. Comments should always <a class="reference internal" href="#models-panya-modelbase-methods-modelbase-obj"><em>reference underlying ModelBase objects</em></a> in order to enable consistent behaviour of this method regardless of where the calling instance is in the inheritance hierarchy.</p>
+</div>
+<div class="section" id="is-permitted">
+<span id="models-panya-modelbase-methods-is-permitted"></span><h5><a class="toc-backref" href="#id49">is_permitted</a><a class="headerlink" href="#is-permitted" title="Permalink to this headline">¶</a></h5>
+<p>A property determining whether or not the given object is accesible based on its <a class="reference internal" href="#models-panya-modelbase-fields-state"><em>state</em></a>. Result is determined as follows:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>If the object has a state of <tt class="docutils literal"><span class="pre">unpublished</span></tt>, return <tt class="xref docutils literal"><span class="pre">False</span></tt>.</li>
+<li>If the object has a state of <tt class="docutils literal"><span class="pre">published</span></tt> and a <a class="reference internal" href="#models-panya-modelbase-fields-sites"><em>site</em></a> set corresponding to the <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/settings#site-id">SITE_ID Django setting</a>, return <tt class="xref docutils literal"><span class="pre">True</span></tt>.</li>
+<li>If the setting <a class="reference internal" href="settings.html#settings-staging"><em>STAGING</em></a> is <tt class="xref docutils literal"><span class="pre">True</span></tt> and the object has a state of <tt class="docutils literal"><span class="pre">staging</span></tt> as well as a <a class="reference internal" href="#models-panya-modelbase-fields-sites"><em>site</em></a> set corresponding to the <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/settings#site-id">SITE_ID Django setting</a>, return <tt class="xref docutils literal"><span class="pre">True</span></tt>.</li>
+<li>In all other cases return <tt class="xref docutils literal"><span class="pre">False</span></tt>.</li>
+</ol>
+</blockquote>
+</div>
+<div class="section" id="modelbase-obj">
+<span id="models-panya-modelbase-methods-modelbase-obj"></span><h5><a class="toc-backref" href="#id50">modelbase_obj</a><a class="headerlink" href="#modelbase-obj" title="Permalink to this headline">¶</a></h5>
+<p>Returns a ModelBase object no matter where the calling instance is in the inheritance hierarchy. Can be considered the reverse of <a class="reference internal" href="#models-panya-modelbase-methods-as-leaf-class"><em>as_leaf_class</em></a>.</p>
+<p>For instance consider the following inheritance structure:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">panya.models</span> <span class="kn">import</span> <span class="n">ModelBase</span>
+
+<span class="k">class</span> <span class="nc">SomeContentType</span><span class="p">(</span><span class="n">ModelBase</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>When you use a SomeContentType manager you&#8217;ll receive objects of class SomeContentType. The modelbase_obj property points to the object&#8217;s ModelBase parent object, i.e.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">SomeContentType</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;SomeContentType Title&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SomeContentType</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">&lt;SomeContentType: SomeContentTypeTitle&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SomeContentType</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">modelbase_obj</span>
+<span class="go">&lt;ModelBase: SomeContentTypeTitle&gt;</span>
+</pre></div>
+</div>
+<p>This is used to make objects behave consistently regardless of content type.</p>
+</div>
+<div class="section" id="vote-total">
+<span id="models-panya-modelbase-methods-vote-total"></span><h5><a class="toc-backref" href="#id51">vote_total</a><a class="headerlink" href="#vote-total" title="Permalink to this headline">¶</a></h5>
+<p>A property calculating vote total as total_upvotes - total_downvotes.  See <a class="reference external" href="http://pypi.python.org/pypi/django-secretballot">django-secretballot</a>.</p>
+</div>
 </div>
 </div>
 </div>
