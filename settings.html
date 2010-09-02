@@ -22,6 +22,7 @@
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="top" title="Panya v0.0.1 documentation" href="index.html" />
+    <link rel="next" title="Template Context Processors" href="template_context_processors.html" />
     <link rel="prev" title="Models" href="models.html" /> 
   </head>
   <body>
@@ -31,14 +32,23 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="id1">
-<h1>Settings<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="settings">
+<span id="id1"></span><h1><a class="toc-backref" href="#id2">Settings</a><a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h1>
 <p>Here’s a full list of all available settings as required by the standard set of Panya apps, in alphabetical order, and their default values.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#settings" id="id2">Settings</a><ul>
+<li><a class="reference internal" href="#staging" id="id3">STAGING</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="staging">
-<h2>STAGING<a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
+<span id="settings-staging"></span><h2><a class="toc-backref" href="#id3">STAGING</a><a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
 <p>Default: <tt class="xref docutils literal"><span class="pre">False</span></tt></p>
 <p>A boolean that turns on/off staging mode.</p>
-<p>If this setting is set to <tt class="xref docutils literal"><span class="pre">True</span></tt> the <a class="reference internal" href="managers.html#managers-panya-permitted"><em>permitted manager&#8217;s</em></a> resulting queryset will additionaly include objects which have a <a class="reference internal" href="models.html#models-modelbase-fields-state"><em>state</em></a> set to <tt class="docutils literal"><span class="pre">staging</span></tt>. Use this setting to create staging instances with which you can preview content without the content being available to the general public.</p>
+<p>If this setting is set to <tt class="xref docutils literal"><span class="pre">True</span></tt> the <a class="reference internal" href="managers.html#managers-panya-permitted"><em>permitted manager&#8217;s</em></a> resulting queryset will additionaly include objects which have a <em class="xref std std-ref">state</em> set to <tt class="docutils literal"><span class="pre">staging</span></tt>. Use this setting to create staging instances with which you can preview content without the content being available to the general public.</p>
 </div>
 </div>
 

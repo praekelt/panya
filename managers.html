@@ -23,7 +23,7 @@
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="top" title="Panya v0.0.1 documentation" href="index.html" />
     <link rel="next" title="Models" href="models.html" />
-    <link rel="prev" title="Apps Overview" href="apps_overview.html" /> 
+    <link rel="prev" title="Inclusion Tags" href="inclusion_tags.html" /> 
   </head>
   <body>
 
@@ -32,15 +32,27 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="id1">
-<h1>Managers<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="managers">
+<span id="id1"></span><h1><a class="toc-backref" href="#id2">Managers</a><a class="headerlink" href="#managers" title="Permalink to this headline">¶</a></h1>
 <p>This document describes custom managers provided by the standard set of Panya apps.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#managers" id="id2">Managers</a><ul>
+<li><a class="reference internal" href="#panya-managers" id="id3">Panya Managers</a><ul>
+<li><a class="reference internal" href="#permittedmanager" id="id4">PermittedManager</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="panya-managers">
-<h2>Panya Managers<a class="headerlink" href="#panya-managers" title="Permalink to this headline">¶</a></h2>
+<span id="managers-panya"></span><h2><a class="toc-backref" href="#id3">Panya Managers</a><a class="headerlink" href="#panya-managers" title="Permalink to this headline">¶</a></h2>
 <p>The following managers are contained in <tt class="docutils literal"><span class="pre">panya.managers</span></tt>.</p>
-<div class="section" id="permitted">
-<h3>Permitted<a class="headerlink" href="#permitted" title="Permalink to this headline">¶</a></h3>
-<p>The permitted manager is used to limit queryset results based on object state and site eligibility, see <a class="reference internal" href="models.html#models-modelbase"><em>ModelBase&#8217;s</em></a> <a class="reference internal" href="models.html#models-modelbase-fields-state"><em>state</em></a> and <a class="reference internal" href="models.html#models-modelbase-fields-sites"><em>sites</em></a> fields. The managers resulting queryset is determined by the following rules:</p>
+<div class="section" id="permittedmanager">
+<span id="managers-panya-permitted"></span><h3><a class="toc-backref" href="#id4">PermittedManager</a><a class="headerlink" href="#permittedmanager" title="Permalink to this headline">¶</a></h3>
+<p>The permitted manager is used to limit queryset results based on object state and site eligibility, see <a class="reference internal" href="models.html#models-panya-modelbase"><em>ModelBase&#8217;s</em></a> <a class="reference internal" href="models.html#models-panya-modelbase-fields-state"><em>state</em></a> and <a class="reference internal" href="models.html#models-panya-modelbase-fields-sites"><em>sites</em></a> fields. The managers resulting queryset is determined by the following rules:</p>
 <blockquote>
 <ol class="arabic simple">
 <li>Exclude all objects which have a state of <tt class="docutils literal"><span class="pre">unpublished</span></tt>.</li>
@@ -48,6 +60,7 @@
 <li>If the setting <a class="reference internal" href="settings.html#settings-staging"><em>STAGING</em></a> is <tt class="xref docutils literal"><span class="pre">True</span></tt>, also include those objects which have a state of <tt class="docutils literal"><span class="pre">staging</span></tt>.</li>
 </ol>
 </blockquote>
+<p>The permitted manager is accessible on the <a class="reference internal" href="models.html#models-panya-modelbase"><em>Panya ModelBase model&#8217;s</em></a> <tt class="docutils literal"><span class="pre">permitted</span></tt> member.</p>
 </div>
 </div>
 </div>

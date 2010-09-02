@@ -1,9 +1,14 @@
 .. _settings:
+
 Settings
 ========
 Here’s a full list of all available settings as required by the standard set of Panya apps, in alphabetical order, and their default values.
 
+.. contents:: Contents
+    :depth: 5
+
 .. _settings-staging:
+
 STAGING
 -------
 Default: ``False``
