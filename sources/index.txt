@@ -9,6 +9,7 @@ Contents
     :maxdepth: 1
 
     app_overview.rst
+    class_based_generic_views.rst
     inclusion_tags.rst
     managers.rst
     models.rst

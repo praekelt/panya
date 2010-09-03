@@ -23,7 +23,7 @@
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="top" title="Panya v0.0.1 documentation" href="index.html" />
     <link rel="next" title="Managers" href="managers.html" />
-    <link rel="prev" title="App Overview" href="app_overview.html" /> 
+    <link rel="prev" title="Class Based Generic Views" href="class_based_generic_views.html" /> 
   </head>
   <body>
 
@@ -81,7 +81,7 @@
 </div>
 <p>A view has been defined that passes a collection of books to a template in a template context variable called <tt class="docutils literal"><span class="pre">object_list</span></tt>.</p>
 <p>View code:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">books</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">books</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="n">objects</span> <span class="o">=</span> <span class="n">Books</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&#39;books.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;object_list&#39;</span><span class="p">:</span> <span class="n">objects</span><span class="p">})</span>
 </pre></div>
