@@ -1,0 +1,332 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>Panya Documentation</title>
+    <link rel="stylesheet" href="static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="Panya v0.0.1 documentation" href="index.html" />
+    <link rel="next" title="Inclusion Tags" href="inclusion_tags.html" />
+    <link rel="prev" title="App Overview" href="app_overview.html" /> 
+  </head>
+  <body>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="class-based-generic-views">
+<span id="id1"></span><h1><a class="toc-backref" href="#id16">Class Based Generic Views</a><a class="headerlink" href="#class-based-generic-views" title="Permalink to this headline">¶</a></h1>
+<p>This document describes class based generic views provided by the <tt class="docutils literal"><span class="pre">panya</span></tt> app. Django itself is <a class="reference external" href="http://code.djangoproject.com/ticket/6735">moving towards class based generic views</a>.</p>
+<p><strong>These views are a temporary solution that should only be used until such time as implemented by Django.</strong></p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#class-based-generic-views" id="id16">Class Based Generic Views</a><ul>
+<li><a class="reference internal" href="#a-little-background" id="id17">A Little Background</a></li>
+<li><a class="reference internal" href="#class-based-generic-view-reference" id="id18">Class Based Generic View Reference</a><ul>
+<li><a class="reference internal" href="#genericobjectdetail" id="id19">GenericObjectDetail</a><ul>
+<li><a class="reference internal" href="#methods" id="id20">methods</a><ul>
+<li><a class="reference internal" href="#get-context-processors-request-args-kwargs" id="id21">get_context_processors(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-extra-context-request-args-kwargs" id="id22">get_extra_context(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-mimetype-request-args-kwargs" id="id23">get_mimetype(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-object-id-request-args-kwargs" id="id24">get_object_id(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-queryset-request-args-kwargs" id="id25">get_queryset(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-slug-request-args-kwargs" id="id26">get_slug(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-slug-field-request-args-kwargs" id="id27">get_slug_field(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-template-loader-request-args-kwargs" id="id28">get_template_loader(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-template-name-request-args-kwargs" id="id29">get_template_name(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-template-name-field-request-args-kwargs" id="id30">get_template_name_field(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-template-object-name-request-args-kwargs" id="id31">get_template_object_name(request, *args, **kwargs)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#genericform" id="id32">GenericForm</a><ul>
+<li><a class="reference internal" href="#class-based-generic-view-reference-genericform-methods" id="id33">methods</a><ul>
+<li><a class="reference internal" href="#class-based-generic-view-reference-genericform-methods-get-extra-context" id="id34">get_extra_context(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-form-args-request-args-kwargs" id="id35">get_form_args(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-form-class-request-args-kwargs" id="id36">get_form_class(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-initial-request-args-kwargs" id="id37">get_initial(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#class-based-generic-view-reference-genericform-methods-get-template-name" id="id38">get_template_name(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-success-message-request-args-kwargs" id="id39">get_success_message(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#handle-valid-form-args-kwargs" id="id40">handle_valid(form, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#redirect-request-args-kwargs" id="id41">redirect(request, *args, **kwargs)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#genericobjectlist" id="id42">GenericObjectList</a><ul>
+<li><a class="reference internal" href="#class-based-generic-view-reference-genericobjectlist-methods" id="id43">methods</a><ul>
+<li><a class="reference internal" href="#get-allow-empty-request-args-kwargs" id="id44">get_allow_empty(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#class-based-generic-view-reference-genericobjectlist-methods-get-context-processors" id="id45">get_context_processors(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#class-based-generic-view-reference-genericobjectlist-methods-get-extra-context" id="id46">get_extra_context(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#class-based-generic-view-reference-genericobjectlist-methods-get-mimetype" id="id47">get_mimetype(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-page-request-args-kwargs" id="id48">get_page(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#get-paginate-by-request-args-kwargs" id="id49">get_paginate_by(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#class-based-generic-view-reference-genericobjectlist-methods-get-queryset" id="id50">get_queryset(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#class-based-generic-view-reference-genericobjectlist-methods-get-template-loader" id="id51">get_template_loader(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#class-based-generic-view-reference-genericobjectlist-methods-get-template-name" id="id52">get_template_name(request, *args, **kwargs)</a></li>
+<li><a class="reference internal" href="#class-based-generic-view-reference-genericobjectlist-methods-get-template-object-name" id="id53">get_template_object_name(request, *args, **kwargs)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="a-little-background">
+<span id="class-based-generic-view-background"></span><h2><a class="toc-backref" href="#id17">A Little Background</a><a class="headerlink" href="#a-little-background" title="Permalink to this headline">¶</a></h2>
+<p>A Django view is a <strong>callable</strong> that takes a request object and returns a response object. Therefore it is completely acceptable for a view to be an object which has a __call__ method defined on its class.</p>
+<p>Class based views are particularly useful in that they allow for greater reuse of code and cleaner implementations. For instance consider the following class based view listing all comments and allowing for users to post comments. Some of the particulars have been omitted for brevity:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">CommentListing</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">handle_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle GET request and return a response.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">handle_POST</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle POST request and return a response.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">RequestContext</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;queryset&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(</span><span class="n">request</span><span class="p">)})</span>
+
+    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Comment</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&#39;POST&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_POST</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&#39;GET&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_GET</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For example sake lets say you now want to create a view listing comments and allowing users to post comments, limited to a particular user. A new view can now be derived from the <tt class="docutils literal"><span class="pre">CommentListing</span></tt> view with minimal code changes/additions, i.e.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UserCommentListing</span><span class="p">(</span><span class="n">CommentListing</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Comment</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this case we only had to override the <tt class="docutils literal"><span class="pre">get_queryset</span></tt> method to filter comments for the requesting user. This example might be somewhat contrived but it should hopefully illustrate the usefulness of class based views.</p>
+<p>The <tt class="docutils literal"><span class="pre">panya</span></tt> app provides certain existing <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/generic-views/">Django generic views</a> <em>classified</em> in this manner, as well as additional class based views handy in general day to day Django work.</p>
+</div>
+<div class="section" id="class-based-generic-view-reference">
+<span id="id2"></span><h2><a class="toc-backref" href="#id18">Class Based Generic View Reference</a><a class="headerlink" href="#class-based-generic-view-reference" title="Permalink to this headline">¶</a></h2>
+<p>The following class based generic views are contained in <tt class="docutils literal"><span class="pre">panya.generic.views</span></tt>.</p>
+<div class="section" id="genericobjectdetail">
+<span id="class-based-generic-view-reference-genericobjectdetail"></span><h3><a class="toc-backref" href="#id19">GenericObjectDetail</a><a class="headerlink" href="#genericobjectdetail" title="Permalink to this headline">¶</a></h3>
+<p>A class based wrapper around <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/generic-views/#django-views-generic-list-detail-object-detail">django.views.generic.list_detail.object_detail</a>. Arguments can still be provided as per normal via a URL pattern, or alternatively via overriden <a class="reference internal" href="#class-based-generic-view-reference-genericobjectdetail-methods"><em>class methods</em></a>.</p>
+<div class="section" id="methods">
+<span id="class-based-generic-view-reference-genericobjectdetail-methods"></span><h4><a class="toc-backref" href="#id20">methods</a><a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="get-context-processors-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectdetail-methods-get-context-processors"></span><h5><a class="toc-backref" href="#id21">get_context_processors(request, *args, **kwargs)</a><a class="headerlink" href="#get-context-processors-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns a list of template-context processors to apply to the view&#8217;s template.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-extra-context-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectdetail-methods-get-extra-context"></span><h5><a class="toc-backref" href="#id22">get_extra_context(request, *args, **kwargs)</a><a class="headerlink" href="#get-extra-context-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns a dictionary of values to add to the template context. If a value in the dictionary is callable, the generic view will call it just before rendering the template.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-mimetype-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectdetail-methods-get-mimetype"></span><h5><a class="toc-backref" href="#id23">get_mimetype(request, *args, **kwargs)</a><a class="headerlink" href="#get-mimetype-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns the MIME type to use for the resulting document. Defaults to the value of the <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/settings/#default-content-type">DEFAULT_CONTENT_TYPE setting</a>.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-object-id-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectdetail-methods-get-object-id"></span><h5><a class="toc-backref" href="#id24">get_object_id(request, *args, **kwargs)</a><a class="headerlink" href="#get-object-id-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>If you provide <tt class="docutils literal"><span class="pre">get_object_id</span></tt>, it should return the value of the primary-key field for the object being queried.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-queryset-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectdetail-methods-get-queryset"></span><h5><a class="toc-backref" href="#id25">get_queryset(request, *args, **kwargs)</a><a class="headerlink" href="#get-queryset-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns a QuerySet that contains the object. The queryset will be further reduced based on the <tt class="docutils literal"><span class="pre">object_id</span></tt> or <tt class="docutils literal"><span class="pre">slug</span></tt> and <tt class="docutils literal"><span class="pre">slug_field</span></tt> parameters.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-slug-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectdetail-methods-get-slug"></span><h5><a class="toc-backref" href="#id26">get_slug(request, *args, **kwargs)</a><a class="headerlink" href="#get-slug-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>If you provide <tt class="docutils literal"><span class="pre">get_slug</span></tt>, it should return the value of the slug for the object being queried. See <a class="reference internal" href="#class-based-generic-view-reference-genericobjectdetail-methods-get-slug-field"><em>get_slug_field</em></a>.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-slug-field-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectdetail-methods-get-slug-field"></span><h5><a class="toc-backref" href="#id27">get_slug_field(request, *args, **kwargs)</a><a class="headerlink" href="#get-slug-field-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>If you provide <tt class="docutils literal"><span class="pre">get_slug_field</span></tt>, it should return the name of the slug field in the QuerySet&#8217;s model. See <a class="reference internal" href="#class-based-generic-view-reference-genericobjectdetail-methods-get-slug"><em>get_slug</em></a>.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-template-loader-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectdetail-methods-get-template-loader"></span><h5><a class="toc-backref" href="#id28">get_template_loader(request, *args, **kwargs)</a><a class="headerlink" href="#get-template-loader-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns template loader to use when loading the template. If a template loader isn&#8217;t specified the view will use the <tt class="docutils literal"><span class="pre">django.template.loader</span></tt> template loader by default.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-template-name-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectdetail-methods-get-template-name"></span><h5><a class="toc-backref" href="#id29">get_template_name(request, *args, **kwargs)</a><a class="headerlink" href="#get-template-name-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns the full name of a template to use in rendering the page. If template_name isn&#8217;t specified the view will use the template <tt class="docutils literal"><span class="pre">&lt;app_label&gt;/&lt;model_name&gt;_detail.html</span></tt> by default.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-template-name-field-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectdetail-methods-get-template-name-field"></span><h5><a class="toc-backref" href="#id30">get_template_name_field(request, *args, **kwargs)</a><a class="headerlink" href="#get-template-name-field-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns the name of a field on the object whose value is the template name to use. This lets you store template names in the data. In other words, if your object has a field <tt class="docutils literal"><span class="pre">the_template</span></tt> that contains a string <tt class="docutils literal"><span class="pre">'foo.html'</span></tt>, and you set template_name_field to <tt class="docutils literal"><span class="pre">'the_template'</span></tt>, then the generic view for this object will use the template <tt class="docutils literal"><span class="pre">'foo.html'</span></tt>.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-template-object-name-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectdetail-methods-get-template-object-name"></span><h5><a class="toc-backref" href="#id31">get_template_object_name(request, *args, **kwargs)</a><a class="headerlink" href="#get-template-object-name-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns the name of the template variable to use in the template context.</p>
+<p>Default: <tt class="docutils literal"><span class="pre">'object'</span></tt></p>
+</div>
+</div>
+</div>
+<div class="section" id="genericform">
+<span id="class-based-generic-view-reference-genericform"></span><h3><a class="toc-backref" href="#id32">GenericForm</a><a class="headerlink" href="#genericform" title="Permalink to this headline">¶</a></h3>
+<p>A class based view representing a form. Arguments can be provided as per normal via a URL pattern, or alternatively via overriden <a class="reference internal" href="#class-based-generic-view-reference-genericform-methods"><em>class methods</em></a>.</p>
+<div class="section" id="class-based-generic-view-reference-genericform-methods">
+<span id="id3"></span><h4><a class="toc-backref" href="#id33">methods</a><a class="headerlink" href="#class-based-generic-view-reference-genericform-methods" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="class-based-generic-view-reference-genericform-methods-get-extra-context">
+<span id="id4"></span><h5><a class="toc-backref" href="#id34">get_extra_context(request, *args, **kwargs)</a><a class="headerlink" href="#class-based-generic-view-reference-genericform-methods-get-extra-context" title="Permalink to this headline">¶</a></h5>
+<p>Returns a dictionary of values to add to the template context.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-form-args-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericform-methods-get-form-args"></span><h5><a class="toc-backref" href="#id35">get_form_args(request, *args, **kwargs)</a><a class="headerlink" href="#get-form-args-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns a dictionary of arguments which will be passed to the form class when instantiating the form.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-form-class-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericform-methods-get-form-class"></span><h5><a class="toc-backref" href="#id36">get_form_class(request, *args, **kwargs)</a><a class="headerlink" href="#get-form-class-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns a form class to use when instantiating the form.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-initial-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericform-methods-get-initial"></span><h5><a class="toc-backref" href="#id37">get_initial(request, *args, **kwargs)</a><a class="headerlink" href="#get-initial-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns a dictionary of initial values which will be passed to the form class when instantiating the form.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="class-based-generic-view-reference-genericform-methods-get-template-name">
+<span id="id5"></span><h5><a class="toc-backref" href="#id38">get_template_name(request, *args, **kwargs)</a><a class="headerlink" href="#class-based-generic-view-reference-genericform-methods-get-template-name" title="Permalink to this headline">¶</a></h5>
+<p>Returns the full name of a template to use in rendering the page.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-success-message-request-args-kwargs">
+<span id="id6"></span><h5><a class="toc-backref" href="#id39">get_success_message(request, *args, **kwargs)</a><a class="headerlink" href="#get-success-message-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns a string provided to the <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/contrib/messages/">Django messages framework</a> after successful form submission.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="handle-valid-form-args-kwargs">
+<span id="class-based-generic-view-reference-genericform-methods-handle-valid"></span><h5><a class="toc-backref" href="#id40">handle_valid(form, *args, **kwargs)</a><a class="headerlink" href="#handle-valid-form-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Called after the form has successfully validated. By default if the form is a <a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/forms/modelforms/">ModelForm</a> and has a <tt class="docutils literal"><span class="pre">save</span></tt> method, that method will be called. Otherwise if the form has a <tt class="docutils literal"><span class="pre">handle_valid</span></tt> method it will be called. Overwrite this method to provide your own custom successful form submission code.</p>
+</div>
+<div class="section" id="redirect-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericform-methods-redirect"></span><h5><a class="toc-backref" href="#id41">redirect(request, *args, **kwargs)</a><a class="headerlink" href="#redirect-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Redirect after successful form submission. Default behaviour is to not redirect and hence return the original view.</p>
+</div>
+</div>
+</div>
+<div class="section" id="genericobjectlist">
+<span id="class-based-generic-view-reference-genericobjectlist"></span><h3><a class="toc-backref" href="#id42">GenericObjectList</a><a class="headerlink" href="#genericobjectlist" title="Permalink to this headline">¶</a></h3>
+<p>A class based wrapper around <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/generic-views/#django-views-generic-list-detail-object-list">django.views.generic.list_detail.object_list</a>. Arguments can still be provided as per normal via a URL pattern, or alternatively via overriden <a class="reference internal" href="#class-based-generic-view-reference-genericobjectlist-methods"><em>class methods</em></a>.</p>
+<div class="section" id="class-based-generic-view-reference-genericobjectlist-methods">
+<span id="id7"></span><h4><a class="toc-backref" href="#id43">methods</a><a class="headerlink" href="#class-based-generic-view-reference-genericobjectlist-methods" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="get-allow-empty-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectlist-methods-get-allow-empty"></span><h5><a class="toc-backref" href="#id44">get_allow_empty(request, *args, **kwargs)</a><a class="headerlink" href="#get-allow-empty-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns a boolean specifying whether to display the page if no objects are available. If this is <tt class="xref docutils literal"><span class="pre">False</span></tt> and no objects are available, the view will raise a 404 instead of displaying an empty page.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">True</span></tt></p>
+</div>
+<div class="section" id="class-based-generic-view-reference-genericobjectlist-methods-get-context-processors">
+<span id="id8"></span><h5><a class="toc-backref" href="#id45">get_context_processors(request, *args, **kwargs)</a><a class="headerlink" href="#class-based-generic-view-reference-genericobjectlist-methods-get-context-processors" title="Permalink to this headline">¶</a></h5>
+<p>Returns a list of template-context processors to apply to the view&#8217;s template.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="class-based-generic-view-reference-genericobjectlist-methods-get-extra-context">
+<span id="id9"></span><h5><a class="toc-backref" href="#id46">get_extra_context(request, *args, **kwargs)</a><a class="headerlink" href="#class-based-generic-view-reference-genericobjectlist-methods-get-extra-context" title="Permalink to this headline">¶</a></h5>
+<p>Returns a dictionary of values to add to the template context. If a value in the dictionary is callable, the generic view will call it just before rendering the template.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="class-based-generic-view-reference-genericobjectlist-methods-get-mimetype">
+<span id="id10"></span><h5><a class="toc-backref" href="#id47">get_mimetype(request, *args, **kwargs)</a><a class="headerlink" href="#class-based-generic-view-reference-genericobjectlist-methods-get-mimetype" title="Permalink to this headline">¶</a></h5>
+<p>Returns the MIME type to use for the resulting document. Defaults to the value of the <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/settings/#default-content-type">DEFAULT_CONTENT_TYPE setting</a>.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-page-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectlist-methods-get-page"></span><h5><a class="toc-backref" href="#id48">get_page(request, *args, **kwargs)</a><a class="headerlink" href="#get-page-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns the current page number, as an integer, or the string &#8216;last&#8217;. This is 1-based.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="get-paginate-by-request-args-kwargs">
+<span id="class-based-generic-view-reference-genericobjectlist-methods-get-paginate-by"></span><h5><a class="toc-backref" href="#id49">get_paginate_by(request, *args, **kwargs)</a><a class="headerlink" href="#get-paginate-by-request-args-kwargs" title="Permalink to this headline">¶</a></h5>
+<p>Returns an integer specifying how many objects should be displayed per page. If this is given, the view will paginate objects with paginate_by objects per page. The view will expect either a page query string parameter (via GET) or a page variable specified in the URLconf.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="class-based-generic-view-reference-genericobjectlist-methods-get-queryset">
+<span id="id12"></span><h5><a class="toc-backref" href="#id50">get_queryset(request, *args, **kwargs)</a><a class="headerlink" href="#class-based-generic-view-reference-genericobjectlist-methods-get-queryset" title="Permalink to this headline">¶</a></h5>
+<p>Returns a QuerySet that represents the objects.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="class-based-generic-view-reference-genericobjectlist-methods-get-template-loader">
+<span id="id13"></span><h5><a class="toc-backref" href="#id51">get_template_loader(request, *args, **kwargs)</a><a class="headerlink" href="#class-based-generic-view-reference-genericobjectlist-methods-get-template-loader" title="Permalink to this headline">¶</a></h5>
+<p>Returns template loader to use when loading the template. If a template loader isn&#8217;t specified the view will use the <tt class="docutils literal"><span class="pre">django.template.loader</span></tt> template loader by default.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="class-based-generic-view-reference-genericobjectlist-methods-get-template-name">
+<span id="id14"></span><h5><a class="toc-backref" href="#id52">get_template_name(request, *args, **kwargs)</a><a class="headerlink" href="#class-based-generic-view-reference-genericobjectlist-methods-get-template-name" title="Permalink to this headline">¶</a></h5>
+<p>Returns the full name of a template to use in rendering the page. If template_name isn&#8217;t specified the view will use the template <tt class="docutils literal"><span class="pre">&lt;app_label&gt;/&lt;model_name&gt;_list.html</span></tt> by default.</p>
+<p>Default: <tt class="xref docutils literal"><span class="pre">None</span></tt></p>
+</div>
+<div class="section" id="class-based-generic-view-reference-genericobjectlist-methods-get-template-object-name">
+<span id="id15"></span><h5><a class="toc-backref" href="#id53">get_template_object_name(request, *args, **kwargs)</a><a class="headerlink" href="#class-based-generic-view-reference-genericobjectlist-methods-get-template-object-name" title="Permalink to this headline">¶</a></h5>
+<p>Returns the name of the template variable to use in the template context. The view will append <tt class="docutils literal"><span class="pre">'_list'</span></tt> to the value of this parameter in determining the variable&#8217;s name.</p>
+<p>Default: <tt class="docutils literal"><span class="pre">'object'</span></tt></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <a href="http://github.com/praekelt/panya"><img style="position: fixed; top: 0; right: 0; border: 0;"
+  src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8783026-21']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>
