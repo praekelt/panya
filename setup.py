@@ -20,6 +20,9 @@ setup(
         'django-photologue==2.5.praekelt',
         'django-publisher',
         'django-secretballot',
+        'python-memcached==1.47',
+        'django-cache-machine==0.3',
+        'django-reversion==1.3.2',
     ],
     include_package_data=True,
     classifiers = [

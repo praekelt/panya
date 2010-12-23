@@ -18,7 +18,7 @@ from panya.utils import generate_slug
 from photologue.models import ImageModel
 from secretballot.models import Vote
 
-class ModelBase(ImageModel):
+class ModelBase(caching.base.CachingMixin, ImageModel):
     objects = models.Manager()
     permitted = PermittedManager()
     
@@ -301,3 +301,97 @@ signals.class_prepared.connect(set_managers)
 # enable voting for ModelBase, but specify a different total name 
 # so ModelBase's vote_total method is not overwritten
 secretballot.enable_voting_on(ModelBase, total_name="secretballot_added_vote_total")
+
+
+class PublisherBase(caching.base.CachingMixin, models.Model):
+    objects = models.Manager()
+    permitted = PermittedManager()
+    
+    state = models.CharField(
+        max_length=32,
+        choices=(
+            ('unpublished', 'Unpublished'),
+            ('published', 'Published'),
+            ('staging', 'Staging'),
+        ),
+        default='unpublished',
+        help_text="Set the item state. The 'Published' state makes the item visible to the public, 'Unpublished' retracts it and 'Staging' makes the item visible to staff users.",
+        blank=True,
+        null=True,
+    )
+    publish_on = models.DateTimeField(
+        blank=True,
+        null=True,
+        help_text="Date and time on which to publish this item (state will change to 'published').",
+    )
+    retract_on = models.DateTimeField(
+        blank=True,
+        null=True,
+        help_text="Date and time on which to retract this item (state will change to 'unpublished').",
+    )
+    content_type = models.ForeignKey(
+        ContentType, 
+        editable=False, 
+        null=True
+    )
+    class_name = models.CharField(
+        max_length=32, 
+        editable=False, 
+        null=True
+    )
+    
+    class Meta:
+        ordering = ('-created',)
+    
+    def as_leaf_class(self):
+        """
+        Returns the leaf class no matter where the calling instance is in the inheritance hierarchy.
+        Inspired by http://www.djangosnippets.org/snippets/1031/
+        """
+        try:
+            return self.__getattribute__(self.class_name.lower())
+        except AttributeError:
+            content_type = self.content_type
+            model = content_type.model_class()
+            if(model == ModelBase):
+                return self
+            return model.objects.get(id=self.id)
+        
+    def save(self, *args, **kwargs):
+       
+        # set leaf class content type
+        if not self.content_type:
+            self.content_type = ContentType.objects.get_for_model(self.__class__)
+        
+        # set leaf class class name
+        if not self.class_name:
+            self.class_name = self.__class__.__name__
+
+        super(PublisherBase, self).save(*args, **kwargs)
+
+    @property
+    def is_permitted(self):
+        def for_site():
+            if self.sites.filter(id__exact=settings.SITE_ID):
+                return True
+            else:
+                return False
+
+        if self.state == 'unpublished':
+            return False
+        elif self.state == 'published':
+            return for_site()
+        elif self.state == 'staging':
+            if getattr(settings, 'STAGING', False):
+                return for_site()
+            
+        return False
+
+    @property
+    def base_obj(self):
+        if self.__class__ == PublisherBase:
+            return self
+        else:
+            return self.publisherbase_ptr
+        
+        
