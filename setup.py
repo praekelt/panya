@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='panya',
+    name='panomena',
     version='0.1.3',
     description='Panya base app.',
     long_description = open('README.rst', 'r').read() + open('AUTHORS.rst', 'r').read() + open('CHANGELOG.rst', 'r').read(),
