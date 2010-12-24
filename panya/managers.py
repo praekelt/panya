@@ -1,4 +1,5 @@
 import datetime
+import logging
 
 from django.conf import settings
 from django.db import models
@@ -21,11 +22,12 @@ class PermittedManager(models.Manager):
 #==============================================================================
 class PublisherManager(caching.base.CachingManager):
     def get_query_set(self):
-        queryset = super(PublisherManager, self).get_query_set().exclude(state='unpublished')
-
-        if not getattr(settings, 'STAGING', False):
-            queryset = queryset.filter(state='published')
-            queryset = queryset.exclude(publish_on__gt=datetime.datetime.now())
-            queryset = queryset.exclude(retract_on__lte=datetime.datetime.now())
+        
+        today = datetime.date.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:00')
+        
+        if getattr(settings, 'STAGING', False):
+            queryset = super(PublisherManager, self).get_query_set().exclude(state='unpublished')
+        else:
+            queryset = super(PublisherManager, self).get_query_set().filter(state='published').exclude(publish_on__gt=today).exclude(retract_on__lte=today)
             
         return queryset.filter(sites__id__exact=settings.SITE_ID)

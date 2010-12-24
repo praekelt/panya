@@ -310,7 +310,7 @@ class PublisherBase(caching.base.CachingMixin, models.Model):
     """
     A publiser-only model 
     """
-    objects = models.Manager()
+    objects = caching.base.CachingManager()
     published = PublisherManager()
     
     state = models.CharField(
