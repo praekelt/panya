@@ -12,11 +12,13 @@ from django.template import Template
 from django.utils.encoding import smart_unicode
 
 import secretballot
-from panya.managers import PermittedManager
+from panya.managers import PublisherManager, PermittedManager
 from panya.utils import generate_slug
 
 from photologue.models import ImageModel
 from secretballot.models import Vote
+
+import caching.base
 
 class ModelBase(caching.base.CachingMixin, ImageModel):
     objects = models.Manager()
@@ -303,9 +305,13 @@ signals.class_prepared.connect(set_managers)
 secretballot.enable_voting_on(ModelBase, total_name="secretballot_added_vote_total")
 
 
+#==============================================================================
 class PublisherBase(caching.base.CachingMixin, models.Model):
+    """
+    A publiser-only model 
+    """
     objects = models.Manager()
-    permitted = PermittedManager()
+    published = PublisherManager()
     
     state = models.CharField(
         max_length=32,
@@ -339,10 +345,13 @@ class PublisherBase(caching.base.CachingMixin, models.Model):
         editable=False, 
         null=True
     )
-    
-    class Meta:
-        ordering = ('-created',)
-    
+    sites = models.ManyToManyField(
+        'sites.Site',
+        blank=True,
+        null=True,
+        help_text='Makes item eligible to be published on selected sites.',
+    )
+        
     def as_leaf_class(self):
         """
         Returns the leaf class no matter where the calling instance is in the inheritance hierarchy.

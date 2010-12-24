@@ -10,6 +10,8 @@ from panya.models import ModelBase
 from publisher.models import Publisher
 from photologue.admin import ImageOverrideInline
 
+from reversion.admin import VersionAdmin
+
 class ModelBaseAdmin(admin.ModelAdmin):
     inlines = [ImageOverrideInline,]
     list_display = ('title', 'state', 'admin_thumbnail', 'owner', 'created')
@@ -73,3 +75,32 @@ class ModelBaseAdmin(admin.ModelAdmin):
             obj.owner = request.user
       
         return super(ModelBaseAdmin, self).save_model(request, obj, form, change)
+    
+#==============================================================================
+class BaseAdmin(admin.ModelAdmin):
+    
+    #--------------------------------------------------------------------------
+    def __init__(self, model, admin_site):
+        super(BaseAdmin, self).__init__(model, admin_site)
+        
+        if not self.fieldsets:
+            self.fieldsets = tuple()
+
+#==============================================================================
+class PublisherModelAdmin(BaseAdmin, VersionAdmin):
+    
+    publisher_fieldsets = (('Publishing', {'fields': ('state', 
+                                                      'publish_on', 
+                                                      'retract_on', 
+                                                      'sites', 
+                                                      ),
+                                           'classes': ('collapse',),
+                                           },
+                            ),
+                           )
+    
+    #--------------------------------------------------------------------------
+    def __init__(self, model, admin_site):
+        
+        super(PublisherModelAdmin, self).__init__(model, admin_site)
+        self.fieldsets += self.publisher_fieldsets
