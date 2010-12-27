@@ -162,7 +162,7 @@ generic_object_detail = GenericObjectDetail()
 class GenericForm(GenericBase):
     defaults = {
         'form_class': None,
-        'form_args': {},
+        'form_args': None,
         'initial': None,
         'extra_context': None, 
         'template_name': None,
