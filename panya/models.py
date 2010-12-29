@@ -322,6 +322,7 @@ class PublisherBase(caching.base.CachingMixin, models.Model):
         ),
         default='unpublished',
         help_text="Set the item state. The 'Published' state makes the item visible to the public, 'Unpublished' retracts it and 'Staging' makes the item visible to staff users.",
+        db_index=True,
         blank=True,
         null=True,
     )

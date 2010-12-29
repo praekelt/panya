@@ -104,3 +104,23 @@ class PublisherModelAdmin(BaseAdmin, VersionAdmin):
         
         super(PublisherModelAdmin, self).__init__(model, admin_site)
         self.fieldsets += self.publisher_fieldsets
+
+#==============================================================================
+class ImageModelAdmin(BaseAdmin, VersionAdmin):
+    
+    image_fieldsets = (('Images', {'fields': ('image', 
+                                              'crop_from', 
+                                              'effect', 
+                                              ),
+                                   'classes': ('collapse',),
+                                   },
+                            ),
+                           )
+    
+    #--------------------------------------------------------------------------
+    def __init__(self, model, admin_site):
+        
+        super(ImageModelAdmin, self).__init__(model, admin_site)
+        self.fieldsets += self.image_fieldsets
+        
+        
