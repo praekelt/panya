@@ -192,7 +192,7 @@ class GenericForm(GenericBase):
         view = super(GenericForm, self).__call__(request, *args, **kwargs)
 
         self.form_class = view.params['form_class']
-        self.form_args = view.params['form_args']
+        self.form_args = view.params['form_args'] or {}
         self.initial = view.params['initial']
         self.template_name = view.params['template_name']
         self.success_message = view.params['success_message']
