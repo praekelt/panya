@@ -1,14 +1,14 @@
+import sys
 import copy
-import traceback
 
 from django.db.models import Q
-from django.db.models.fields import related 
 from django.contrib import messages
 from django.shortcuts import render_to_response
 from django.template import loader
 from django.template import RequestContext
 from django.utils.translation import ugettext
 from django.views.generic import list_detail
+from django.http import HttpResponse
 
 class DefaultURL(object):
     def __call__(self, obj=None):
@@ -218,3 +218,61 @@ class GenericForm(GenericBase):
         return render_to_response(self.template_name, context)
         
 generic_form_view = GenericForm()
+
+class GenericDetail(GenericBase):
+    defaults = {
+        'callback': None,
+        'template_name': None, 
+        'template_name_field': None,
+        'template_loader': loader,
+        'template_object_name': 'object',
+        'extra_context': None, 
+        'context_processors': None, 
+        'mimetype': None,
+    }
+    
+    def __call__(self, request, *args, **kwargs):
+        # generate our view via genericbase
+        view = super(GenericDetail, self).__call__(request, *args, **kwargs)
+        
+        # return generic detail generic view
+        return self.generic_detail(request, view.params.pop('callback'), **view.params)
+    
+    def generic_detail(self, request, callback, **kwargs):
+        """
+        Generic detail of a non-QuerySet object, yielded by calling the klass 
+        method and passing method_kwargs  
+        """
+        template_name = kwargs['template_name']
+        template_name_field = kwargs['template_name_field']
+        template_loader = kwargs['template_loader']
+        template_object_name = kwargs['template_object_name']
+        context_processors = kwargs['context_processors']
+        mimetype = kwargs['mimetype']
+        
+        extra_context = kwargs.get('extra_context', {})
+        callback_args = kwargs.get('callback_args', ())
+        callback_kwargs = kwargs.get('callback_kwargs', {})    
+            
+        if not callable(callback):
+            mod_name = callback.split('.')[:-1]
+            __import__(mod_name)
+            callback = getattr(sys.modules[mod_name], callback.split('.')[-1])
+        
+        obj = callback(*callback_args, **callback_kwargs)
+
+        if template_name_field:
+            template_name_list = [getattr(obj, template_name_field), template_name]
+            t = template_loader.select_template(template_name_list)
+        else:
+            t = template_loader.get_template(template_name)
+        c = RequestContext(request, {template_object_name: obj}, context_processors)
+        for key, value in extra_context.items():
+            if callable(value):
+                c[key] = value()
+            else:
+                c[key] = value
+        response = HttpResponse(t.render(c), mimetype=mimetype)
+        return response
+            
+generic_detail = GenericDetail()
