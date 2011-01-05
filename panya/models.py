@@ -363,10 +363,10 @@ class PublisherBase(caching.base.CachingMixin, models.Model):
         except AttributeError:
             content_type = self.content_type
             model = content_type.model_class()
-            if(model == ModelBase):
+            if(model == PublisherBase):
                 return self
             return model.objects.get(id=self.id)
-        
+                        
     def save(self, *args, **kwargs):
        
         # set leaf class content type
