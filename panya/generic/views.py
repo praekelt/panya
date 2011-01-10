@@ -251,9 +251,9 @@ class GenericList(GenericBase):
         context_processors = kwargs['context_processors']
         mimetype = kwargs['mimetype']
         
-        extra_context = kwargs.get('extra_context', {})
-        callback_args = kwargs.get('callback_args', ())
-        callback_kwargs = kwargs.get('callback_kwargs', {})    
+        extra_context = kwargs.get('extra_context', {}) or {}
+        callback_args = kwargs.get('callback_args', ())  or ()
+        callback_kwargs = kwargs.get('callback_kwargs', {})  or {}
             
         if not callable(callback):
             mod_name = callback.split('.')[:-1]
@@ -310,9 +310,9 @@ class GenericDetail(GenericBase):
         context_processors = kwargs['context_processors']
         mimetype = kwargs['mimetype']
         
-        extra_context = kwargs.get('extra_context', {})
-        callback_args = kwargs.get('callback_args', ())
-        callback_kwargs = kwargs.get('callback_kwargs', {})    
+        extra_context = kwargs.get('extra_context', {}) or {}
+        callback_args = kwargs.get('callback_args', ())  or ()
+        callback_kwargs = kwargs.get('callback_kwargs', {})  or {}
             
         if not callable(callback):
             mod_name = callback.split('.')[:-1]
