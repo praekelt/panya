@@ -227,8 +227,8 @@ class GenericList(GenericBase):
         'template_name_field': None,
         'template_loader': loader,
         'template_object_name': 'object_list',
-        'extra_context': None, 
         'context_processors': None, 
+        'extra_context': None, 
         'mimetype': None,
     }
     
@@ -251,7 +251,7 @@ class GenericList(GenericBase):
         context_processors = kwargs['context_processors']
         mimetype = kwargs['mimetype']
         
-        extra_context = kwargs.get('extra_context', {}) or {}
+        extra_context = kwargs.get('extra_context', {})  or {}
         callback_args = kwargs.get('callback_args', ())  or ()
         callback_kwargs = kwargs.get('callback_kwargs', {})  or {}
             
@@ -260,14 +260,18 @@ class GenericList(GenericBase):
             __import__(mod_name)
             callback = getattr(sys.modules[mod_name], callback.split('.')[-1])
         
-        obj = callback(*callback_args, **callback_kwargs)
-
+        object_list = callback(*callback_args, **callback_kwargs)
+        
+        if hasattr(self, 'callback_results_processor') and \
+            callable(getattr(self, 'callback_results_processor')):
+            getattr(self, 'callback_results_processor')(request, object_list, **kwargs)
+        
         if template_name_field:
-            template_name_list = [getattr(obj, template_name_field), template_name]
+            template_name_list = [getattr(object_list, template_name_field), template_name]
             t = template_loader.select_template(template_name_list)
         else:
             t = template_loader.get_template(template_name)
-        c = RequestContext(request, {template_object_name: obj}, context_processors)
+        c = RequestContext(request, {template_object_name: object_list}, context_processors)
         for key, value in extra_context.items():
             if callable(value):
                 c[key] = value()
@@ -286,8 +290,8 @@ class GenericDetail(GenericBase):
         'template_name_field': None,
         'template_loader': loader,
         'template_object_name': 'object',
-        'extra_context': None, 
         'context_processors': None, 
+        'extra_context': None, 
         'mimetype': None,
     }
     
@@ -310,7 +314,7 @@ class GenericDetail(GenericBase):
         context_processors = kwargs['context_processors']
         mimetype = kwargs['mimetype']
         
-        extra_context = kwargs.get('extra_context', {}) or {}
+        extra_context = kwargs.get('extra_context', {})  or {}
         callback_args = kwargs.get('callback_args', ())  or ()
         callback_kwargs = kwargs.get('callback_kwargs', {})  or {}
             
@@ -320,7 +324,11 @@ class GenericDetail(GenericBase):
             callback = getattr(sys.modules[mod_name], callback.split('.')[-1])
         
         obj = callback(*callback_args, **callback_kwargs)
-
+        
+        if hasattr(self, 'callback_results_processor') and \
+            callable(getattr(self, 'callback_results_processor')):
+            getattr(self, 'callback_results_processor')(request, obj, **kwargs)
+        
         if template_name_field:
             template_name_list = [getattr(obj, template_name_field), template_name]
             t = template_loader.select_template(template_name_list)
