@@ -3,3 +3,7 @@
 *.egg-info
 .project
 .pydevproject
+project/
+ve/
+build/
+dist/
