@@ -3,7 +3,7 @@ Changelog
 
 0.1.5.unomena.1
 -----
-#. Added GenericObjectFilterOrderList view
+#. Added GenericObjectFilterOrderList and GenericSearchForm views
 
 0.1.5.unomena
 -----

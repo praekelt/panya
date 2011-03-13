@@ -177,6 +177,115 @@ class GenericObjectFilterOrderList(GenericObjectList):
         
 generic_object_filter_order_list = GenericObjectFilterOrderList()
 
+#==============================================================================
+class GenericSearchForm(GenericBase):
+    defaults = {
+        'form_class': None,
+        'form_args': None,
+        'initial': None,
+        'extra_context': None, 
+        'template_name': None,
+        'success_message': None,
+        'filter_name': None,
+    }
+    
+    def handle_valid(self, form=None, *args, **kwargs):
+        """
+        Called after the form has validated.
+        """
+        # Try and call handle_valid method of the form itself.
+        if hasattr(form, 'handle_valid'):
+            filter = form.handle_valid(*args, **kwargs)
+            
+        return filter
+    
+    def redirect(self, request, *args, **kwargs):
+        """
+        Redirect after successful form submission.
+        Default behaviour is to not redirect and hence return the original view.
+        """
+        return None
+    
+    #--------------------------------------------------------------------------
+    def get_form_args(self, *args, **kwargs):
+        return {}
+        
+    #--------------------------------------------------------------------------
+    def get_initial(self, request, *args, **kwargs):
+        return {}
+    
+    def __call__(self, request, *args, **kwargs):
+        # generate our view via genericbase
+        view = super(GenericSearchForm, self).__call__(request, *args, **kwargs)
+
+        self.form_class = view.params['form_class']
+        self.form_args = view.params['form_args']
+        self.template_name = view.params['template_name']
+        self.success_message = view.params['success_message']
+        self.filter_name = view.params['filter_name']
+
+        kwargs['filter_on'] = False
+        kwargs['filter_form'] = view.params['form_class']
+
+        if self.form_class:
+            if request.method == 'POST':
+                
+                if request.POST.has_key('clearFilter') and request.POST['clearFilter'] == 'True':
+                    form = self.form_class(initial=self.get_initial(request=request, *args, **kwargs), **self.form_args)
+                    kwargs['filter_on'] = False
+                    request.session['%s_filter_on' % self.filter_name] = False
+                    request.session[self.filter_name] = {}
+                    
+                else:
+                    if request.POST.has_key('clearFilter'):
+                        form = self.form_class(data=request.POST, files=request.FILES, **self.form_args)
+                        request.session['%s_data' % self.filter_name] = request.POST
+                    else:
+                        if request.session.has_key('%s_filter_on' % self.filter_name) and request.session['%s_filter_on' % self.filter_name]:
+                            data = request.session['%s_data' % self.filter_name]
+                            form = self.form_class(data=data, files=request.FILES, **self.form_args)
+                        else:
+                            form = self.form_class(initial=self.get_initial(request=request, *args, **kwargs), **self.form_args)
+                        
+                    if form.is_valid():
+                        request.session[self.filter_name] = self.handle_valid(form=form, request=request, *args, **kwargs)
+                        if request.session[self.filter_name]:
+                            kwargs['filter_on'] = True
+                        else:
+                            kwargs['filter_on'] = False
+                            
+                        request.session['%s_filter_on' % self.filter_name] = kwargs['filter_on']
+                    
+            else:
+                if request.session.has_key('%s_filter_on' % self.filter_name) and request.session['%s_filter_on' % self.filter_name]:
+                    data = request.session['%s_data' % self.filter_name]
+                    form = self.form_class(data=data, files=request.FILES, **self.form_args)
+                    
+                    if form.is_valid():
+                        request.session[self.filter_name] = self.handle_valid(form=form, request=request, *args, **kwargs)
+                        if request.session[self.filter_name]:
+                            kwargs['filter_on'] = True
+                        else:
+                            kwargs['filter_on'] = False
+                            
+                        request.session['%s_filter_on' % self.filter_name] = kwargs['filter_on']
+                else:
+                    form = self.form_class(initial=self.get_initial(request=request, *args, **kwargs), **self.form_args)
+       
+            kwargs['filter_form'] = form
+        else:
+            kwargs['filter_form'] = None
+            request.session[self.filter_name] = {}
+        
+        try:
+            kwargs['filter'] = request.session[self.filter_name]
+        except:
+            kwargs['filter'] = {}
+        
+        return generic_object_filter_order_list(request, *args, **kwargs)
+        
+generic_search_form = GenericSearchForm()
+
 class GenericObjectDetail(GenericBase):
     defaults = {
         'queryset': None,
