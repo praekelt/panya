@@ -131,6 +131,52 @@ class GenericObjectFilterList(GenericObjectList):
         
 generic_object_filter_list = GenericObjectFilterList()
 
+class GenericObjectFilterOrderList(GenericObjectList):
+    
+    def __call__(self, request, *args, **kwargs):
+        # generate our view via genericbase
+        view = super(GenericObjectList, self).__call__(request, *args, **kwargs)
+        
+        # setup object_list params
+        queryset=view.params['queryset']
+        del view.params['queryset']
+        
+        if view.params['extra_context'].has_key('filter'):
+            # Filter
+            for field in view.params['extra_context']['filter'].keys():
+                
+                if view.params['extra_context']['filter'][field].has_key('operator'):
+                    queryset = queryset.filter(Q(**{"%s__%s" % (field, view.params['extra_context']['filter'][field]['operator']) : view.params['extra_context']['filter'][field]['value']}))
+                else:
+                    queryset = queryset.filter(Q(**{"%s" % field : view.params['extra_context']['filter'][field]['value']}))
+                    
+        order_by = '-id'
+        
+        if request.GET.has_key('order_by'):
+            order_by = request.GET['order_by']
+            request.session['order_by_%s' % view.params['extra_context']['unique_session_key']] = order_by
+        elif request.session.has_key('order_by_%s' % view.params['extra_context']['unique_session_key']):
+            order_by = request.session['order_by_%s' % view.params['extra_context']['unique_session_key']]
+                
+        view.params['extra_context']['order_by'] = order_by
+        
+        queryset = queryset.order_by(order_by,'-id')
+        
+        request.session['full_queryset'] = queryset
+        
+        try:
+            view.params['paginate_by'] =  int(request.POST.get('page_limit', request.session['page_limit']))
+            request.session['page_limit'] = view.params['paginate_by']
+        except:
+            request.session['page_limit'] = kwargs['paginate_by']
+            
+        view.params['extra_context']['page_limit'] = request.session['page_limit']
+        
+        # return object list generic view
+        return list_detail.object_list(request, queryset=queryset, **view.params)
+        
+generic_object_filter_order_list = GenericObjectFilterOrderList()
+
 class GenericObjectDetail(GenericBase):
     defaults = {
         'queryset': None,

@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.1.5.unomena.1
+-----
+#. Added GenericObjectFilterOrderList view
+
+0.1.5.unomena
+-----
+#. Merged in unomena changes
+
 0.1.5
 -----
 #. Use photologue 2.6.praekelt
