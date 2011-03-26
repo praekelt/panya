@@ -13,6 +13,7 @@ setup(
     dependency_links = [
         'http://dist.plone.org/thirdparty/',
         'http://github.com/praekelt/django-photologue/tarball/2.6.praekelt#egg=django-photologue-2.6.praekelt',
+        'http://github.com/unomena/django-cache-machine/tarball/master#egg=django-cache-machine-0.4.1.unomena',
     ],
     install_requires = [
         'PIL',
@@ -21,7 +22,7 @@ setup(
         'django-publisher',
         'django-secretballot',
         'python-memcached==1.47',
-        'django-cache-machine==0.3',
+        'django-cache-machine==0.4.1.unomena',
         'django-reversion==1.3.2',
     ],
     include_package_data=True,
