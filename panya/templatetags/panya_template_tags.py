@@ -6,6 +6,8 @@ register = template.Library()
 
 @register.simple_tag
 def smart_url(url_callable, obj):
+    if obj is None:
+        return ''
     return url_callable(obj)
 
 @register.tag
