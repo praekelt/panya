@@ -12,7 +12,20 @@ from photologue.admin import ImageOverrideInline
 
 from reversion.admin import VersionAdmin
 
+def make_published(modeladmin, request, queryset):
+    queryset.update(state='published')
+make_published.short_description = "Mark selected items as published"
+
+def make_staging(modeladmin, request, queryset):
+    queryset.update(state='staging')
+make_staging.short_description = "Mark selected items as staging"
+
+def make_unpublished(modeladmin, request, queryset):
+    queryset.update(state='unpublished')
+make_unpublished.short_description = "Mark selected items as unpublished"
+
 class ModelBaseAdmin(admin.ModelAdmin):
+    actions = [make_published, make_staging, make_unpublished]
     inlines = [ImageOverrideInline,]
     list_display = ('title', 'state', 'admin_thumbnail', 'owner', 'created')
     list_filter = ('state', 'created')
