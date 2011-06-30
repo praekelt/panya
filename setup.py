@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='panya',
-    version='0.1.6.unomena',
+    version='0.1.6.unomena.1',
     description='Panya base app.',
     long_description = open('README.rst', 'r').read() + open('AUTHORS.rst', 'r').read() + open('CHANGELOG.rst', 'r').read(),
     author='Praekelt Foundation',
@@ -18,6 +18,7 @@ setup(
     install_requires = [
         'PIL',
         'django-category',
+        'django-ckeditor == 0.0.9',
         'django-photologue==2.6.praekelt',
         'django-publisher',
         'django-secretballot',
