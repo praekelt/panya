@@ -7,7 +7,7 @@ from django.contrib import admin
 
 from panya.admin import PublisherModelAdmin
 
-from general.models import ContentBlock
+from contentblocks.models import ContentBlock
 
 #==============================================================================
 class ContentBlockAdmin(PublisherModelAdmin):
