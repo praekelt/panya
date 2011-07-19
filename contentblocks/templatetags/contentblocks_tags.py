@@ -5,7 +5,7 @@ Created on 19 Jul 2011
 '''
 from django import template
 
-from general.models import ContentBlock
+from contentblocks.models import ContentBlock
 
 register = template.Library()
 
