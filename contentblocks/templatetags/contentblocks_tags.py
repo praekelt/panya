@@ -13,8 +13,6 @@ register = template.Library()
 @register.inclusion_tag('contentblocks/templatetags/content_block.html', takes_context=True)
 def content_block(context, key):
     try:
-        object = ContentBlock.published.get(key=key)
+        return { 'content_block': ContentBlock.published.get(contentblock__key=key).as_leaf_class() }
     except:
-        object = None
-
-    return { 'content_block': object }
+        return { 'content_block': None }
