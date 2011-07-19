@@ -6,6 +6,7 @@ from django.db import models
 
 import caching.base
 
+#==============================================================================
 class PermittedManager(models.Manager):
     def get_query_set(self):
         # get base queryset and exclude based on state
