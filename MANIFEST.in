@@ -8,3 +8,5 @@ recursive-include panya/templates *
 recursive-include panya/templatetags *
 recursive-include panya/utils *
 recursive-include panya/view_modifiers *
+recursive-include contentblocks/templates *
+recursive-include contentblocks/templatetags *
