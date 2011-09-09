@@ -21,6 +21,6 @@ def content_block(context, key):
 @register.inclusion_tag('contentblocks/templatetags/plain_text_block.html', takes_context=True)
 def plain_text_block(context, key):
     try:
-        return { 'plain_text_block': PlainTextBlock.published.get(contentblock__key=key).as_leaf_class() }
+        return { 'plain_text_block': PlainTextBlock.published.get(plaintextblock__key=key).as_leaf_class() }
     except:
         return { 'plain_text_block': None }
