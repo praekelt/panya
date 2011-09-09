@@ -7,7 +7,7 @@ from django.contrib import admin
 
 from panya.admin import PublisherModelAdmin
 
-from contentblocks.models import ContentBlock
+from contentblocks.models import ContentBlock, PlainTextBlock
 
 #==============================================================================
 class ContentBlockAdmin(PublisherModelAdmin):
@@ -19,3 +19,4 @@ class ContentBlockAdmin(PublisherModelAdmin):
                  )
 
 admin.site.register(ContentBlock, ContentBlockAdmin)
+admin.site.register(PlainTextBlock)
