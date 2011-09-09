@@ -26,3 +26,19 @@ class ContentBlock(PublisherBase, CachingMixin):
     #==========================================================================
     class Meta:
         ordering = ('key',)
+
+#==============================================================================
+class PlainTextBlock(PublisherBase, CachingMixin):
+    objects = CachingManager()
+    
+    name = models.CharField(max_length=255 ,blank=True, null=True)
+    key = models.CharField(max_length=255, unique=True)
+    content = models.TextField()
+    
+    #--------------------------------------------------------------------------
+    def __unicode__(self):
+        return unicode(self.name)
+
+    #==========================================================================
+    class Meta:
+        ordering = ('key',)
