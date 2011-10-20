@@ -13,11 +13,12 @@ setup(
     dependency_links = [
         'http://dist.plone.org/thirdparty/',
         'http://github.com/praekelt/django-photologue/tarball/2.6.praekelt#egg=django-photologue-2.6.praekelt',
+        'http://github.com/praekelt/django-photologue/tarball/2.7.praekelt#egg=django-photologue-2.7.praekelt',
     ],
     install_requires = [
         'PIL',
         'django-category',
-        'django-photologue==2.6.praekelt',
+        'django-photologue>=2.6.praekelt',
         'django-publisher',
         'django-secretballot',
     ],
