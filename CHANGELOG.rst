@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.1.7
+-----
+#. Relax version pin on django-photologue.
+
 0.1.6
 -----
 #. Added state admin bulk actions.
