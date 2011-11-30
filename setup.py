@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='panya',
-    version='0.1.6.unomena.5',
+    version='0.1.6.unomena.6',
     description='Panya base app.',
     long_description = open('README.rst', 'r').read() + open('AUTHORS.rst', 'r').read() + open('CHANGELOG.rst', 'r').read(),
     author='Praekelt Foundation',
@@ -22,7 +22,7 @@ setup(
         'django-photologue==2.6.praekelt',
         'django-publisher',
         'django-secretballot',
-        'python-memcached==1.47',
+        'python-memcached==1.48',
         'django-cache-machine==0.4.1.unomena',
         'django-reversion==1.3.2',
     ],
