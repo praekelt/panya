@@ -13,7 +13,7 @@ setup(
     dependency_links = [
         'http://dist.plone.org/thirdparty/',
         'http://github.com/praekelt/django-photologue/tarball/2.6.praekelt#egg=django-photologue-2.6.praekelt',
-        'http://github.com/unomena/django-cache-machine/tarball/master#egg=django-cache-machine-0.4.1.unomena',
+        #'http://github.com/unomena/django-cache-machine/tarball/0.6.unomena.1#egg=django-cache-machine-0.6.unomena.1',
     ],
     install_requires = [
         'PIL',
