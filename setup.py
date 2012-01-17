@@ -23,7 +23,7 @@ setup(
         'django-publisher',
         'django-secretballot',
         'python-memcached==1.48',
-        'django-cache-machine==0.4.1.unomena',
+        'django-cache-machine==0.6.unomena.1',
         'django-reversion==1.3.2',
     ],
     include_package_data=True,
