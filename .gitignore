@@ -1,6 +1,8 @@
 *.swp
 *.pyc
 *.egg-info
+.project
+.pydevproject
 project/
 ve/
 build/

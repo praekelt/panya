@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='panya',
-    version='0.1.7',
+    version='0.1.8',
     description='Panya base app.',
     long_description = open('README.rst', 'r').read() + open('AUTHORS.rst', 'r').read() + open('CHANGELOG.rst', 'r').read(),
     author='Praekelt Foundation',
@@ -12,15 +12,20 @@ setup(
     packages = find_packages(),
     dependency_links = [
         'http://dist.plone.org/thirdparty/',
-        'http://github.com/praekelt/django-photologue/tarball/2.6.praekelt#egg=django-photologue-2.6.praekelt',
         'http://github.com/praekelt/django-photologue/tarball/2.7.praekelt#egg=django-photologue-2.7.praekelt',
+        'http://github.com/unomena/django-cache-machine/tarball/0.6.unomena.4#egg=django-cache-machine-0.6.unomena.4',
+        'http://github.com/unomena/django-ckeditor/tarball/0.0.9.unomena.1#egg=django_ckeditor-0.0.9.unomena.1',
     ],
     install_requires = [
         'PIL',
         'django-category',
-        'django-photologue>=2.6.praekelt',
+        'django-ckeditor==0.0.9.unomena.1',
+        'django-photologue==2.6.praekelt',
         'django-publisher',
         'django-secretballot',
+        'python-memcached==1.48',
+        'django-cache-machine==0.6.unomena.4',
+        'django-reversion==1.3.2',
     ],
     include_package_data=True,
     classifiers = [

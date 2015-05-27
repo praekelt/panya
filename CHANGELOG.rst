@@ -9,9 +9,14 @@ Changelog
 -----
 #. Added state admin bulk actions.
 
+0.1.5.unomena.1
+-----
+#. Added GenericObjectFilterOrderList and GenericSearchForm views
+
 0.1.5
 -----
 #. Use photologue 2.6.praekelt
+#. Merged in unomena changes
 
 0.1.4
 -----
