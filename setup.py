@@ -20,7 +20,7 @@ setup(
     install_requires = [
         'PIL',
         'django-category',
-        'django-ckeditor==0.0.9.unomena.1',
+        'django-ckeditor==0.0.9',
         'django-photologue>=2.6.praekelt',
         'django-publisher',
         'django-secretballot',
