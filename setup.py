@@ -25,7 +25,7 @@ setup(
         'django-secretballot',
         'python-memcached==1.48',
         'django-cache-machine==0.6.unomena.4',
-        'django-reversion==1.3.2',
+        'django-reversion==1.5',
     ],
     include_package_data=True,
     classifiers = [
